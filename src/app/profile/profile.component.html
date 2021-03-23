@@ -1,0 +1,22 @@
+<div *ngIf="authService.user$ | async as user">
+  <div class="background-white container">
+    <h1>Profil</h1>
+    <hr>
+    <div class="row no-gutters">
+      <div class="col-auto">
+        <img class="mr-3 rounded shadow-sm" [src]="user.picture" alt="Image profile">
+      </div>
+      <div class="col-auto">
+        <h5 class="mt-2 font-weight-bold">Bienvenue {{ user.given_name }} {{ user.family_name }}</h5>
+        <button class="mr-2" (click)="onClock('site')" mat-raised-button *ngIf="isUser">
+          Badger sur site
+          <mat-icon class="ml-1">badge</mat-icon>
+        </button>
+        <button class="mt-2" (click)="onClock('remote')" mat-raised-button *ngIf="isUser">
+          Badger en télétravail
+          <mat-icon class="ml-1">home_work</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

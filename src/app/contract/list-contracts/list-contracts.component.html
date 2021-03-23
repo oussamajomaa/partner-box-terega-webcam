@@ -1,0 +1,67 @@
+<div class="background-white container">
+    <h1>Contrats</h1>
+    <hr>
+
+    <mat-progress-bar *ngIf="!isFetch" mode="indeterminate"></mat-progress-bar>
+
+    <div *ngIf="isEmpty" class="text-center">Vous n'avez encore créé aucun contrat</div>
+
+    <div *ngIf="!isEmpty && isFetch" class="table-responsive">
+        <table mat-table [dataSource]="contracts" class="mat-elevation-z8 w-100">
+            <ng-container matColumnDef="Nom">
+                <th mat-header-cell *matHeaderCellDef>Nom</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.ContractName}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Entreprise">
+                <th mat-header-cell *matHeaderCellDef>Entreprise</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.ContractCompany}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Commande">
+                <th mat-header-cell *matHeaderCellDef>Commande</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.ContractOrder}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Consommé">
+                <th mat-header-cell *matHeaderCellDef>Consommé</th>
+                <td mat-cell *matCellDef="let element" [ngStyle]="colorSpending(calculatePercentage(element.ContractSpend, element.ContractOrder))">
+                    {{element.ContractSpend}} ({{calculatePercentage(element.ContractSpend, element.ContractOrder) | number: '1.0-0' }}%)
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Durée du contrat">
+                <th mat-header-cell *matHeaderCellDef>Durée du contrat</th>
+                <td mat-cell *matCellDef="let element">
+                    {{calculateDiff(element.ContractEndDate, element.ContractStartDate)}} jour(s)
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button matTooltip="Modifier" (click)="onEdit(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Supprimer" (click)="onDelete(element.ContractId)" color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div *ngIf="isFetch" class="d-flex mt-3">
+        <button mat-raised-button class="ml-auto" color="primary" routerLink="creer">
+            Ajouter un contrat <mat-icon class="ml-2">add</mat-icon>
+        </button>
+    </div>
+</div>

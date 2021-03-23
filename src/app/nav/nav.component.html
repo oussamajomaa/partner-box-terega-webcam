@@ -1,0 +1,27 @@
+<mat-toolbar>
+    <mat-toolbar-row class="shadow-lg">
+
+        <span class="spacer"></span>
+
+        <button mat-button matTooltip="Profile" class="mx-1" *ngIf="authService.user$ | async as user" routerLink="/profil">
+            <img class="rounded-circle mr-2" [src]="user.picture"> <span class="d-md-inline d-none">Profil</span>
+        </button>
+
+        <button mat-button matTooltip="Calendrier" routerLink="/calendrier" class="mx-1" aria-hidden="false" aria-label="Event icon" *ngIf="isUser">
+            <mat-icon class="mr-2">event</mat-icon> <span class="d-md-inline d-none">Calendrier</span>
+        </button>
+        
+        <button mat-button matTooltip="Contrats" routerLink="/contrats" class="mx-1" *ngIf="isAdmin">
+            <mat-icon class="mr-2">description</mat-icon> <span class="d-md-inline d-none">Contrats</span>
+        </button>
+
+        <button mat-button matTooltip="Partenaires" routerLink="/partenaires" class="mx-1" *ngIf="isAdmin">
+            <mat-icon class="mr-2">people</mat-icon> <span class="d-md-inline d-none">Partenaires</span>
+        </button>
+        
+        <button mat-button matTooltip="Se déconnecter" (click)="logout()" class="mx-1" aria-hidden="false" aria-label="Exit icon">
+            <mat-icon class="mr-2">exit_to_app</mat-icon> <span class="d-md-inline d-none">Se déconnecter</span>
+        </button>
+        
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,25 @@
+.btn-action {
+  display: block;
+  margin-left: auto;
+}
+
+input.spin-button::-webkit-outer-spin-button,
+input.spin-button::-webkit-inner-spin-button{
+  display: none;
+}
+
+table {
+  width: 100%;
+}
+
+mat-form-field{
+  width: 50px;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
+
+.mat-cell {
+  text-align: center;
+}

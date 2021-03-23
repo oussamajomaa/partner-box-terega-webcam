@@ -1,0 +1,70 @@
+<div class="background-white container">
+    <h1>Partenaires</h1>
+    <hr>
+
+    <mat-progress-bar *ngIf="!isFetch()" mode="indeterminate"></mat-progress-bar>
+
+    <div *ngIf="isEmpty() && isFetch()" class="text-center">Aucun partnaire</div>
+
+    <div *ngIf="!isEmpty() && isFetch()" class="table-responsive">
+        <table mat-table [dataSource]="partners" class="mat-elevation-z8">
+            <ng-container matColumnDef="Nom">
+                <th mat-header-cell *matHeaderCellDef>Nom</th>
+                <td mat-cell *matCellDef="let partner">{{partner.PartnerName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Taux journalier">
+                <th mat-header-cell *matHeaderCellDef>Taux journalier</th>
+                <td style="width: 200px;" mat-cell *matCellDef="let partner">
+                    <div *ngIf="!isReserve(partner.ContractId)">
+                        <mat-form-field>
+                            <input class="spin-button" type="number" [(ngModel)]="partner.PartnerDailyRate" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="isReserve(partner.ContractId)">
+                        <mat-form-field>
+                            <input class="spin-button" type="number" disabled [(ngModel)]="partner.PartnerDailyRate" matInput>
+                        </mat-form-field>
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Contrat">
+                <th mat-header-cell *matHeaderCellDef>Contrat</th>
+                <td mat-cell *matCellDef="let partner">
+                    <mat-form-field style="width: 130px;">
+                        <div *ngIf="!isReserve(partner.ContractId)">
+                            <mat-select [(ngModel)]="partner.ContractId">
+                                <mat-option *ngFor="let contract of contracts" [value]="contract.ContractId">{{contract.ContractName}}</mat-option>
+                            </mat-select>
+                        </div>
+                        <div *ngIf="isReserve(partner.ContractId)">
+                            <mat-select disabled value="reserve">
+                                <mat-option value="reserve">Réservé</mat-option>
+                            </mat-select>
+                        </div>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let partner">
+                    <div *ngIf="!isReserve(partner.ContractId)">
+                        <button (click)="onSubmit(partner)" mat-icon-button matTooltip="Sauvegarder">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+                    <div *ngIf="isReserve(partner.ContractId)">
+                        <button (click)="onSubmit(partner)" disabled mat-icon-button matTooltip="Sauvegarder">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

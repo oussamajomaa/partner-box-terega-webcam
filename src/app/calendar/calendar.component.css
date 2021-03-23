@@ -1,0 +1,21 @@
+td {
+    user-select: none;
+    cursor: pointer;
+}
+
+mat-chip{
+    user-select: none;
+}
+
+.carreVert, .carreJaune {
+    width: 10px;
+    height: 10px;
+}
+
+.carreVert {
+    background-color: #3AE374;
+}
+
+.carreJaune {
+    background-color: #FFF200;
+}

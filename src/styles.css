@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'hurmegeometricsans4';
+    src: url('./assets/fonts/hurmegeometricsans4_light-webfont.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: "hurmegeometricsans4", "Helvetica Neue", sans-serif;
+    background: url("./assets/imgs/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.background-white{
+    background-color: white;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0px 10px 25px 5px rgba(0, 0, 0, 0.80);
+    border-radius: 25px;
+}
+
+@media screen and (max-width: 540px){
+    .background-white{
+        background-color: white;
+        padding: 20px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+.snack-bar-success{
+    background-color: #4cd137;
+    color: white;
+}
+
+.snack-bar-danger{
+    background-color: #e84118;
+    color: white;
+}
+
+.snack-bar-primary{
+    background-color: #34495e;
+    color: white;
+}
+
+.mat-simple-snackbar-action {
+    color: white !important;
+}
+
+.field {
+    width: 100%;
+}
+
+.btn-action {
+    display: block;
+    margin-left: auto;
+}
+
+.mat-button-focus-overlay {
+    background-color:transparent !important;
+}
+
+.cdk-focused:focus, .cdk-mouse-focused:focus {
+    outline: 0px solid transparent;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}

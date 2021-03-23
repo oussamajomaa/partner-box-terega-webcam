@@ -1,0 +1,11 @@
+<div *ngIf="authService.isAuthenticated$ | async">
+    <div *ngIf="isAdmin">
+        <app-partners></app-partners>
+    </div>
+    <div *ngIf="isUser">
+        <app-profile></app-profile>
+    </div>
+</div>
+<div *ngIf="(authService.isAuthenticated$ | async) === false">
+    <app-auth></app-auth>
+</div>

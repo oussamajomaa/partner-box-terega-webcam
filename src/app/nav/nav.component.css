@@ -1,0 +1,9 @@
+img{
+    width: 30px;
+}
+
+mat-toolbar{
+    color: white;
+    background-color: #00a380;
+    background-image: linear-gradient(to right,#21a1c9,#00a380);
+}

@@ -1,0 +1,41 @@
+<div class="container background-white">
+  <h1>Créer un contrat</h1>
+  <hr>
+  <form [formGroup]="formGroup" (ngSubmit)="onPostContracts()">
+    <div class="row">
+      <mat-form-field class="col" appearance="legacy">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="ContractName">
+      </mat-form-field>
+
+      <mat-form-field class="col" appearance="legacy">
+        <mat-label>Commande</mat-label>
+        <input matInput formControlName="ContractOrder" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="col" appearance="legacy">
+        <mat-label>Entreprise</mat-label>
+        <input matInput formControlName="ContractCompany">
+      </mat-form-field>
+
+      <mat-form-field class="col" appearance="legacy">
+        <mat-label>Durée du contrat</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="ContractStartDate" placeholder="Date de début">
+          <input matEndDate formControlName="ContractEndDate" placeholder="Date de fin">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="row justify-content-end no-gutters">
+      <button mat-raised-button color="warn" type="button" routerLink="..">Retour</button>
+      <button mat-raised-button color="primary" class="ml-3" type="submit" [disabled]='formGroup.invalid'>
+        <div class="row no-gutters">
+          <span class="align-self-center">Créer</span>
+          <mat-spinner *ngIf="isCreate" class="align-self-center ml-2" [diameter]="25" color="accent"></mat-spinner>
+        </div>
+      </button>
+    </div>
+  </form>
+</div>
